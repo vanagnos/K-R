@@ -12,16 +12,28 @@ int main(void) {
     }
 
     while ((c = getchar()) != EOF) {
-        _char[c] = _char[c] + 1;
+        if ( c < TOTAL_CHARS ) {
+           ++_char[c];
+        }
     }
 
-    for (i = 0; i < TOTAL_CHARS; ++i) {
-        putchar(i);
+    for (i = 0; i < TOTAL_CHARS; i++) {
+        if (_char[i] > 0) {
+            if (i == '\n')
+                printf("\\n ");
+            else if (i == '\t')
+                printf("\\t ");
+            else if (i == ' ')
+                printf("' '");
+            else
+                printf(" %c ", i);
 
-        for (j = 0; j < _char[i]; ++j)
+            printf(": ");
+        for (j = 0; j < _char[i]; j++)
             putchar('*');
 
         putchar('\n');
+        }
     }
     return 0;
 }
