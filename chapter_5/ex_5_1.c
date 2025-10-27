@@ -11,20 +11,17 @@ int bufp = 0;
 
 int main() {
     int n, result;
-    int count = 0;
 
     printf("Examples to try: 123 abc 456 +789 -321 12.34 xyz\n");
 
     while ((result = getint(&n)) != EOF) {
-        count++;
 
         if (result == 0) {
-            printf("Input %d: Invalid input (incomplete sign)\n", count);
-            continue;
+            printf("Invalid input (incomplete sign)\n");
         } else if (result == 1) {
-            printf("Input %d: Valid integer found = %d\n", count, n);
+            printf("Valid integer found = %d\n", n);
         } else {
-            printf("Input %d: Invalid input '%c' (not a number)\n", count, result);
+            printf("Invalid input '%c' (not a number)\n", result);
         }
     }
 
@@ -48,7 +45,6 @@ int getint(int *pn) {
         if (!isdigit(c)) {
             if (c != EOF)
                 ungetch(c);
-            ungetch((sign == -1) ? '-' : '+');
             return 0;
         }
     }
